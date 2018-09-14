@@ -1,0 +1,97 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/admin-删除，修改.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="main1">
+		<form
+			action="${pageContext.request.contextPath}/YhxxbServlet?m=listAll&flag=sgyh"
+			method="post" name="form1">
+			<table width="100%" cellspacing="0">
+				<tr>
+					<td>账户</td>
+					<td><input name="zh" value="${param.zh}" /></td>
+					<td>用户名</td>
+					<td><input name="yhm" value="${param.yhm}" /></td>
+					<td>注册时间</td>
+					<td><input name="zcsj" value="${param.zcsj }" /></td>
+				</tr>
+				<tr id="tr_input">
+					<td colspan="6" id="">
+					<input type="submit" value="查询" />
+				    <input type="button" value="清空" id="doClear" />
+				    </td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br />
+	<div id="main2">
+		<form action="" method="post">
+			<table width="100%" border="1" cellspacing="0px"
+				bordercolor="#ADADAD">
+				<c:choose>
+					<c:when test="${not empty list}">
+						<tr>
+							<th>序号</th>
+							<th>账户</th>
+							<th>用户名</th>
+							<th>性别</th>
+							<th>联系方式</th>
+							<th>注册时间</th>
+							<th>修改</th>
+							<th>删除</th>
+						</tr>
+						<c:forEach items="${list}" var="user" varStatus="st">
+							<tr>
+								<td>${st.index + pager.startRowNum}</td>
+								<td>${user.zh}</td>
+								<td>${user.yhm}</td>
+								<td>${user.xb}</td>
+								<td>${user.lxfs}</td>
+								<td>${user.zcsj }</td>
+								<td><a
+									href="${pageContext.request.contextPath}/pageAdmin/UpdateUser.jsp?zh=${user.zh}&yhm=${user.yhm}&xb=${user.xb}&lxfs=${user.lxfs}&zcsj=${user.zcsj}">修改</a>
+								</td>
+								<td><a
+									href="${pageContext.request.contextPath}/YhxxbServlet?grbh=${user.grbh }&m=delete">删除</a>
+								</td>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td colspan="8"><jsp:include page="pager.jsp">
+									<jsp:param name="path"
+										value="${pageContext.request.contextPath}/YhxxbServlet?m=listAll&flag=sgyh" />
+								</jsp:include></td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="5">无满足条件的记录！</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+			</table>
+		</form>
+	</div>
+</body>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#doClear").click(function() {
+			$('[name="zh"]').val("");
+			$('[name="yhm"]').val("");
+			$('[name="zcsj"]').val("");
+		});
+	});
+</script>
+</html>

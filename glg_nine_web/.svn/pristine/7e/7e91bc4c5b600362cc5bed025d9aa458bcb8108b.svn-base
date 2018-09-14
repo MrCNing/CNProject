@@ -1,0 +1,107 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="${pageContext.request.contextPath}/XxglServlet?m=add" method="post"  name="infoForm"  >
+			房源介绍：<input type="text" name="fyjs" id="fyjs" /><span id="fyjsspan"></span><br />
+			价钱：<input type="text" name="jq" id="jq" /><span id="jqspan"></span><br />
+			<!-- 房间图片：<input type="file" name="fjtp" id="fjtp" /><span id="fjtpspan"></span><br /> -->
+			<div> 城市：
+			    <input type="text" value="" size="15" id="homecity_name" name="cs" mod="address|notice" mod_address_source="hotel" mod_address_suggest="@Beijing|北京|53@Shanghai|上海|321@Shenzhen|深圳|91@Guangzhou|广州|80@Qingdao|青岛|292@Chengdu|成都|324@Hangzhou|杭州|383@Wuhan|武汉|192@Tianjin|天津|343@Dalian|大连|248@Xiamen|厦门|61@Chongqing|重庆|394@" mod_address_reference="cityid" mod_notice_tip="中文/拼音" />
+			    <input id="cityid" name="cityid" type="hidden" value="{$cityid}" />
+			  </div>
+			  <div id="jsContainer" class="jsContainer" style="height:0">
+				  <div id="tuna_alert" style="display:none;position:absolute;z-index:999;overflow:hidden;"></div>
+				  <div id="tuna_jmpinfo" style="visibility:hidden;position:absolute;z-index:120;"></div>
+				</div>
+			具体地址：<input type="text" name="jtdz" id="jtdz" /><span id="jtdzspan"></span><br />
+			联系方式：<input type="text" name="lxfs" id="lxfs" /><span id="lxfsspan"></span><br />
+			可住人数：
+			<select name="kzrs">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+			</select><br />
+			床类型：
+			<select name="clx">
+				<option value="大床：1张">大床：1张</option>
+				<option value="大床：2张">大床：2张</option>
+				<option value="大床：3张">大床：3张</option>
+				<option value="标准床：1张">标准床：1张</option>
+				<option value="标准床：2张">标准床：2张</option>
+				<option value="标准床：3张">标准床：3张</option>
+			</select><br />
+			接待时间：
+			<input type="text" class="demo-input" placeholder="时间范围" id="test6" name="jdsj"><span id="test6span"></span><br />
+			最少入住天数：<input type="text" name="zsrzts" id="zsrzts" /><span id="fzsrztsspan"></span><br />
+			最多入住天数：<input type="text" name="zdrzts" id="zdrzts" /><span id="zdrzts"></span><br />
+			入住时间：
+			<input type="text" class="demo-input" placeholder="" id="test7" name="rzsj"><span id="test7span"></span><br />
+			退房时间：
+			<input type="text" class="demo-input" placeholder="" id="test8" name="tfsj"><span id="test8span"></span><br />
+			收费说明：<br />
+			<textarea name="sfsm" name="sfsm"></textarea><br />
+			配套设施：<br />
+			<input type="checkbox" name="func" value="kt" />空调
+			<input type="checkbox" name="func" value="bx" />冰箱
+			<input type="checkbox" name="func" value="ds" />电视
+			<input type="checkbox" name="func" value="xyj" />洗衣机
+			<input type="checkbox" name="func" value="wx" />无线wifi<br />
+			<input type="checkbox" name="func" value="dn" />电脑
+			<input type="checkbox" name="func" value="zc" />早餐
+			<input type="checkbox" name="func" value="zf" />做饭
+			<input type="checkbox" name="func" value="wsj"  />卫生间
+			<input type="checkbox" name="func" value="rs" />24小时热水<br />
+			<!-- <input type="submit" value="提交"/> -->
+		</form>
+		<form action="${pageContext.request.contextPath}/XxglServlet?m=addPic" method="post" enctype="multipart/form-data" name="picForm"  target="rfFrame" >
+			房间图片：<input type="file" name="fjtp" id="fjtp" /><span id="fjtpspan"></span><br />
+			<input type="button" id="upload" value="提交"/>
+		</form>
+		<!-- 提交图片时隐藏跳转界面 -->
+		<iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe>
+	</body>
+	
+	<script src="${pageContext.request.contextPath }/js/jquery-1.8.0.js"></script>
+	<script src="${pageContext.request.contextPath }/js/fixdiv.js"></script>
+	<script src="${pageContext.request.contextPath }/js/address.js"></script>
+	<script src="${pageContext.request.contextPath }/js/laydate.js"></script>
+	<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/js/infopublic.js" ></script> --%>
+	<script type="text/javascript">
+		laydate.render({
+     		 elem: '#test6'
+     		,type: 'time'
+      		,range: true
+    	});
+		laydate.render({
+     		 elem: '#test7'
+      		,type: 'time'
+    	});
+		laydate.render({
+     		 elem: '#test8'
+      		,type: 'time'
+    	});
+	</script>
+	<script type="text/javascript">
+		function upload(){
+			picForm.submit();
+			setTimeout(function(){
+				infoForm.submit();
+			}, 2000);
+			//infoForm.submit();
+		}
+	
+		$(function(){
+			$("#upload").click(upload);
+		});
+	</script>
+</html>

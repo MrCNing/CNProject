@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin-增加用户.css" />
+	</head>
+	<body>
+		<div id="main">
+			<div id="main1">
+			<form action="${pageContext.request.contextPath}/YhxxbServlet?m=add" method="post" name="add">
+				<div id="hr">
+				<hr color="#DDDDDD" size="2px" width="100%"/>
+				</div>
+				<div id="menu">
+				<div id="a2">
+					账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<input type="text" value="" name="zh" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br /><br />
+				<div id="a3">
+					&nbsp;&nbsp;&nbsp;&nbsp;用户名：<input type="text" value="" name="yhm" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br /><br />
+				<div id="a4">
+					密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="text" value="" name="pwd" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br /><br />
+				<div id="a5">
+					性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：<input type="text" value="" name="xb" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br /><br />
+				<div id="a6">
+					联系方式：<input type="text" value="" name="lxfs" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;">
+				</div><br /><br />
+				<div id="a0">
+					<input type="submit" name="" id="" value="确定"style="background-color: whitesmoke;width: 60px;height: 35px;border: solid 1px #DDD;border-radius:5px ;" />
+				</div>
+				</div>
+				<div id="hr1">
+					<hr color="#DDDDDD" size="2px" width="100%"/>
+				</div>
+			</form>
+			</div>
+		</div>
+	</body>
+</html>

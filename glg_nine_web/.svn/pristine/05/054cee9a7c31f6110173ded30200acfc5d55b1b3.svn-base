@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/admin-基本信息.css" />
+	</head>
+	<body>
+		<div id="main">
+			<div id="main1">
+			<form action="" method="post">
+				<div id="hr">
+				<hr color="#808080" size="50px" width="100%"/>
+				</div>
+				<div id="menu">
+				<div id="a1">
+					账号：<input type="text" value=""style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br /><br />
+				<div id="a2">
+					密码：<input type="text" value=""style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br /><br />
+				<div id="a3">
+					昵称：<input type="text" value=""style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br /><br />
+				<div id="a4">
+					联系方式：<input type="text" value=""/style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;">
+				</div><br /><br />
+				<div id="a5">
+					<input type="button" name="" id="" value="确定"style="background-color: whitesmoke;width: 60px;height: 35px;border: solid 1px #DDD;border-radius:5px ;" />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" name="" id="" value="修改"style="background-color: whitesmoke;width: 60px;height: 35px;border: solid 1px #DDD;border-radius:5px ;" />
+				</div>
+				</div>
+			</form>
+			</div>
+		</div>
+	</body>
+</html>

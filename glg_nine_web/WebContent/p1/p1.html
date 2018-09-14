@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#sideouterPanel{
+			position: fixed;
+			width: 280px;
+			right: 0;
+			top:15%;
+		}
+		
+		#sidePanel{
+			float: right;
+		}
+		
+		#sidePanel>div{
+			background-color: black;
+			background-repeat: no-repeat;
+			width: 44px;
+			height: 44px;
+			margin: 5px 0;
+			position: relative;
+			cursor: pointer;
+		}
+		#sidePanel>div:hover{
+			background-color: red;
+		}
+		
+		#sidePanel .side-qq>span{
+			background-image: url(img/side2.png);
+			float:left;
+			width: 20px;
+			height:20px;
+			margin: 12px;
+		}
+		#sidePanel .side-tel>span{
+			background-image: url(img/side2.png);
+			float:left;
+			width: 20px;
+			height:20px;
+			margin: 12px;
+			background-position: -26px 0;
+		}
+		#sidePanel .side-ewm{
+			background-image: url(img/side1.png);
+			background-position: -44px 0;
+		}
+		#sidePanel .side-gwc{
+			background-image: url(img/side1.png);
+			background-position: -88px 0;
+		}
+		#sidePanel .side-top{
+			background-image: url(img/side1.png);
+			background-position: -132px 0;
+		}
+		
+		#sidePanel>div>div{
+			position: absolute;
+			padding: 15px;
+			border: solid #EAEAEA 1px;
+			border-radius: 3px;
+			left:-230px;
+			width: 180px;
+			display: none;
+		}
+		#sidePanel .side-qq img,
+		#sidePanel .side-tel img{
+			background-color: lightgray;
+			border-radius: 50%;
+			margin-right:20px ;
+			width: 40px;
+			height: 40px;
+			float: left;
+		}
+		#sidePanel .side-qq img:hover,
+		#sidePanel .side-tel img:hover{
+			background-color: gray;
+		}
+		
+		#sidePanel .side-ewm img{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="sideouterPanel">
+	<div id="sidePanel">
+		<div class="side-qq"><!--QQ-->
+			<span></span>
+			<div>
+				<a target="QQframe" href="tencent://message/?uin=624151713&Site=网站名称&Menu=yes">
+					<img src="img/s-qq.png"/>
+				</a>
+				<span>咨询客服<br/>624151713</span>
+				<iframe name="QQframe" style="display:none;">我是隐藏的，你看不到我</iframe>
+			</div>
+		</div>
+		
+		<div class="side-tel"><!--电话-->
+			<span></span>
+			<div>
+				<img src="img/s-tel.png"/>
+				<span>服务热线<br/>13010001000</span>
+			</div>
+		</div>
+		
+		<div class="side-ewm"><!--二维码-->
+			<div>
+				<img src="img/s-ewm.png"/>
+			</div>
+		</div>
+		
+		<div class="side-gwc"><!--购物车-->
+			<a href="#"></a>
+		</div>
+		
+		<div class="side-top"><!--回到顶部-->
+			<a href="#"></a>
+		</div>
+	</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js" ></script>
+<script>
+$(function(){
+	$("#sideouterPanel").mouseleave(function(){
+		$("#sidePanel>div>div").hide();
+	});
+	
+	$("#sidePanel>div").mouseenter(function(){
+		$("#sidePanel>div>div").hide();
+		$(this).find("div").show();
+	})
+	
+	$("#sidePanel>div>div").mouseleave(function(){
+		$(this).hide();
+	});
+});
+</script>
+</html>

@@ -1,0 +1,26 @@
+
+*{
+	padding: 0px;
+	margin: 0px;
+}
+body{
+	background-color: #ADADAD;
+}
+#main{
+}
+#menu{
+	padding-top:35px;
+	padding-left:350px;
+	padding-bottom:450px;
+	background-color:#EEEEEE;
+}
+#a8{
+	padding-left:100px;
+}
+#a0{
+	padding-left:50px;
+}
+
+#a6{
+	margin-left:180px;
+}

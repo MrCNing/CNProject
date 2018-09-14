@@ -1,0 +1,74 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript"src="${pageContext.request.contextPath}/js/jquery-1.8.0.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin-基本信息.css" />
+<style>
+	.name_bt{
+	font-size: 25px;
+    margin-left: 30px;
+    margin-top: 20px;
+	}
+	#main{
+    padding-top: 20px;
+	}
+</style>
+</head>
+	<div class="name_bt">基本信息</div>
+	<div id="main">
+		<div id="menu">
+			<form action="${pageContext.request.contextPath}/GlyxxbServlet" method="post" name="updateAdmin">
+				<div id="a1">
+					账&nbsp;&nbsp;&nbsp;&nbsp;号：<input type="text" name="zh" readonly="readonly" value="${glyxx.zh}"
+						style="border-radius: 5px; width: 300px; height: 30px; border: solid 1px #808080;" />
+				</div>
+				<br />
+				<br />
+				<div id="a2">
+					密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="text" class="Ajbxx" name="pwd" readonly="readonly" 
+						style="border-radius: 5px; width: 300px; height: 30px; border: solid 1px #808080;" />
+				</div>
+				<br />
+				<br />
+				<div id="a3">
+					昵&nbsp;&nbsp;&nbsp;&nbsp;称：<input type="text" class="Ajbxx" name="yhm" readonly="readonly" value="${glyxx.yhm}"
+						style="border-radius: 5px; width: 300px; height: 30px; border: solid 1px #808080;" />
+				</div>
+				<br />
+				<br />
+				<div id="a4">
+					联&nbsp;系&nbsp;方&nbsp;式：<input type="text" class="Ajbxx"  name="lxfs" readonly="readonly" value="${glyxx.lxfs}"
+						/style="border-radius: 5px; width: 300px; height: 30px; border: solid 1px #808080;">
+				</div>
+				<br />
+				<br />
+				<div id="a5">
+					<input type="button" name="" id="qd" value="确定"
+						style="background-color: whitesmoke; width: 60px; height: 35px; border: solid 1px #808080; border-radius: 5px;" />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" name="" id="xiu"  value="修改"
+						style="background-color: whitesmoke; width: 60px; height: 35px; border: solid 1px #808080; border-radius: 5px;" />
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+		$(function (){
+			$("#xiu").click(function(){
+				var a= document.getElementById("xiu").value;
+				if("修改"==a){
+					$(".Ajbxx").removeAttr("readonly");
+				}
+			});
+			$("#qd").click(function(){
+				$(".Ajbxx").attr("readonly","readonly");
+				updateAdmin.submit();
+			});
+		});
+	</script>
+</html>

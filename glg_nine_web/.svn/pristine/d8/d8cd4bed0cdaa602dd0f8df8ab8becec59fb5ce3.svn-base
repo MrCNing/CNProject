@@ -1,0 +1,156 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+#main{
+	width: 100%;
+	height: 100%;
+}
+#main_main{
+	position: relative;
+	width: 100%;
+	/*height: 1000px;*/
+}
+#left{
+	/*position: absolute;*/
+	height: 100%;
+	width: 15%;
+	background-color: #303030;
+	background-size: 100% 110%;
+	float: left;
+}
+
+#left a{
+	color:#FFFFFF;
+	text-decoration: none;
+}
+
+#right{
+	height: 100%;
+	width: 85%;
+	float: right;
+}
+#photo{
+	width: 100%;
+	height: 110px;
+	text-align: center;
+}
+
+#photo>div{
+	padding-top: 10px;
+}
+#photo>div>p{
+color: white;
+}
+#a1,#a3,#a5,#a7>p{
+	color: white;
+	padding: 10px;
+	padding-left: 25%;
+	font-size: 20px;
+	cursor: pointer;
+}
+#menu>div>div{
+	color: white;
+	padding: 10px;
+	padding-left: 25%;
+	font-size: 15px;
+	cursor: pointer;
+}
+#a1{
+	border-top:solid 1px whitesmoke;
+}
+ #menu>div>div:hover{
+	background-color:grey;
+	margin-left:10px;
+}
+
+ #menu>div>div{
+	margin-left:10px;
+}
+#menu p span{
+	float: right;
+}
+
+* {
+	
+	list-style: none;
+	
+}
+
+html,body {
+	background: #FFFFFF;
+	font: normal 15px "Microsoft YaHei";
+}
+
+#top {
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 70px;
+	background-color: #303030;
+}
+
+#top_logo {
+	width: 300px;
+	float: left;
+	margin-left: 13%;
+	vertical-align: middle;
+	height: 65px;
+	line-height: 65px;
+	padding: 1px 1px 1px 40px;
+}
+
+#top_links {
+	width: 480px;
+	height: 65px;
+	float: right;
+	line-height: 65px;
+	color: #ADADAD;
+	line-height: 65px;
+	position: relative;
+}
+
+#top_op {
+	width: 400px;
+}
+
+#top_op ul {
+	list-style-type: none;
+}
+
+#top_op ul li:first-child{
+	cursor: pointer;
+}
+
+#top_op ul li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+#top_op ul li img {
+	vertical-align: text-top;
+}
+
+#top_links a:link,#nav_links a:visited,#nav_links a:hover,#nav_links a:active
+	{
+	list-style: none;
+	text-decoration: none;
+	color: #fff;
+}
+
+#top_links a:hover {
+	list-style: none;
+	text-decoration: underline;
+	color: #fff;
+}
+
+#top_close {
+	width: 80px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	border-left: 1px solid #171717;
+	vertical-align: text-top;
+}
+    

@@ -1,0 +1,19 @@
+/* 代码整理：大头网 www.datouwang.com */
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif "新宋体";}
+/* slide */
+.slide{width:790px;height:360px;margin:10px auto 0 auto;overflow:hidden;position:relative;background-color:#000;z-index:10;}
+.slide ul{height:360px;}
+.slide ul li{width:790px;height:360px;float:left;}
+.slide .bg{width:790px;height:34px;position:absolute;background-color:#000;bottom:0;left:0;border-top:1px solid #fff;filter:alpha(opacity=30);opacity:.3;z-index:5;}
+.slide .num{overflow:hidden;zoom:1;position:absolute;right:20px;bottom:11px;z-index:10;}
+.slide .num span{display:inline-block;width:12px;height:12px;background:url(../images/bg-slide.png) 0 -12px no-repeat;_background:url(../images/ie6/bg-slide.png) 0 -12px no-repeat;cursor:pointer;overflow:hidden;}
+.slide .num span.on{background-position:0 0;}
+.slide .skip{display:none;_display:block;width:23px;height:47px;background:url(../images/bg-slide.png) no-repeat;_background:url(../images/ie6/bg-slide.png) no-repeat;position:absolute;top:50%;margin-top:-24px;text-indent:-1000em;cursor:pointer;}
+.slide .prev{background-position:0 -172px;left:10px;}
+.slide .prev:hover{background-position:0 -219px;}
+.slide .next{background-position:-23px -172px;right:10px;}
+.slide .next:hover{background-position:-23px -219px;}
+.slide:hover .prev,.slide:hover .next{display:block;}
+.slide .num{bottom:11px;}

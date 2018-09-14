@@ -1,0 +1,61 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+#main{
+	height: 100%;
+	width: 100%;
+	background-color: white;
+	margin: auto;
+}
+#top{
+	height: 50px;
+	width: 100%;
+	background-color: #ADADAD;
+}
+
+table{
+	padding-left: 4%;
+	padding-right: 4%;
+	padding-top: 1%;
+	border-style:none ;
+	
+}
+th{
+	border: solid 1px #DDD;
+	text-align: center;
+	padding: 10px 15px;
+	font-size: 18px;
+	color: #303030;
+	background-color:#EEEEEE;
+}
+ td{
+	border: solid 1px #DDD;
+	text-align: center;
+	padding: 10px 15px;
+	font-size: 15px;
+	color: #303030;
+	border-top-style:none ;
+}
+#button{
+	text-align: center;
+}
+#button>input{
+	width:100px;
+	height: 30px;
+	border: solid 1px #808080;border-radius:5px ;
+	background-color:#DDDDDD;
+}
+#tr_input>td>input{
+	width:70px;
+	height: 30px;
+	border: solid 1px #808080;border-radius:5px ;
+}
+
+
+
+
+
+
+
+

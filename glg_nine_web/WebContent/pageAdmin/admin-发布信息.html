@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/admin-发布信息.css" />
+	</head>
+	<body>
+		<div id="main">
+		<div id="main1">
+		<form action="" method="post">
+			<div id="main_left">
+				<br /><br />
+			房源介绍：<input type="type" name="fyjs" id="fyjs" /><span id="fyjsspan"></span><br /><br /><br />
+			价钱：<input type="text" name="jq" id="jq" /><span id="jqspan"></span><br /><br /><br />
+			房间图片：<input type="file" name="fjtp" id="fjtp" /><span id="fjtpspan"></span><br /><br /><br />
+			<div> 城市：
+			    <input type="text" value="" size="15" id="homecity_name" name="homecity_name" mod="address|notice" mod_address_source="hotel" mod_address_suggest="@Beijing|北京|53@Shanghai|上海|321@Shenzhen|深圳|91@Guangzhou|广州|80@Qingdao|青岛|292@Chengdu|成都|324@Hangzhou|杭州|383@Wuhan|武汉|192@Tianjin|天津|343@Dalian|大连|248@Xiamen|厦门|61@Chongqing|重庆|394@" mod_address_reference="cityid" mod_notice_tip="中文/拼音" />
+			    <input id="cityid" name="cityid" type="hidden" value="{$cityid}" />
+			  </div>
+			  <br /><br />
+			  <div id="jsContainer" class="jsContainer" style="height:0">
+				  <div id="tuna_alert" style="display:none;position:absolute;z-index:999;overflow:hidden;"></div>
+				  <div id="tuna_jmpinfo" style="visibility:hidden;position:absolute;z-index:120;"></div>
+				</div>
+			具体地址：<input type="text" name="jtdz" id="jtdz" /><span id="jtdzspan"></span><br /><br /><br />
+			联系方式：<input type="text" name="lxfs" id="lxfs" /><span id="lxfsspan"></span><br /><br /><br />
+			可住人数：
+			<select name="kzrs">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+			</select><br />
+			床类型：
+			<select name="clx">
+				<option value="大床：1张">大床：1张</option>
+				<option value="大床：2张">大床：2张</option>
+				<option value="大床：3张">大床：3张</option>
+				<option value="标准床：1张">标准床：1张</option>
+				<option value="标准床：2张">标准床：2张</option>
+				<option value="标准床：3张">标准床：3张</option>
+			</select><br /><br /><br />
+			接待时间：
+			<input type="text" class="demo-input" placeholder="时间范围" id="test6" name="jdsj"><span id="test6span"></span><br />
+		</div>
+		<div id="main_right">
+			<br /><br />
+			最少入住天数：<input type="text" name="zsrzts" id="zsrzts" /><span id="fzsrztsspan"></span><br /><br /><br />
+			最多入住天数：<input type="text" name="zdrzts" id="zdrzts" /><span id="zdrzts"></span><br /><br /><br />
+			预订时间：
+			<input type="text" class="demo-input" placeholder="日期范围" id="test7" name="ydsj"><span id="test7span"></span><br /><br />
+			收费说明：<br />
+			<textarea name="sfsm" id="sfsm"></textarea><br /><br />
+			配套设施：<br />
+			<input type="checkbox" name="func" value="kt" />空调
+			<input type="checkbox" name="func" value="bx" />冰箱
+			<input type="checkbox" name="func" value="ds" />电视
+			<input type="checkbox" name="func" value="xyj" />洗衣机
+			<input type="checkbox" name="func" value="wx" />无线wifi<br />
+			<input type="checkbox" name="func" value="dn" />电脑
+			<input type="checkbox" name="func" value="zc" />早餐
+			<input type="checkbox" name="func" value="zf" />做饭
+			<input type="checkbox" name="func" value="wsj"  />卫生间
+			<input type="checkbox" name="func" value="rs" />24小时热水<br />
+			<input type="submit" value="提交"/>
+			</div>
+		</form>
+		</div>
+		</div>
+	</body>
+	
+	<script src="js/jquery-1.8.0.js"></script>
+	<script src="js/fixdiv.js"></script>
+	<script src="js/address.js"></script>
+	<script src="js/laydate.js"></script>
+	<script type="text/javascript" src="js/infopublic.js" ></script>
+	<script type="text/javascript">
+		laydate.render({
+     		 elem: '#test6'
+     		,type: 'time'
+      		,range: true
+    	});
+		laydate.render({
+     		 elem: '#test7'
+      		,range: true
+    	});
+	</script>
+</html>

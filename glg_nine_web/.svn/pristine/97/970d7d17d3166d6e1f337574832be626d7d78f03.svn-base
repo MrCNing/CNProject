@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript"src="${pageContext.request.contextPath}/js/jquery-1.8.0.js"></script>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin-增加用户.css" />
+	</head>
+	<body>
+		<div id="main">
+			<div id="main1">
+			<form action="${pageContext.request.contextPath}/YhxxbServlet?m=update" method="post" name="update">
+				<div id="menu">
+				<div id="a2">
+					账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<input type="text" value="${param.zh}" name="zh" readonly="readonly" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br />
+				<div id="a3">
+					&nbsp;&nbsp;&nbsp;&nbsp;用户名：<input type="text" value="${param.yhm}" name="yhm"  readonly="readonly" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br />
+				<div id="a4">
+					密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="text" value="" name="pwd" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br />
+				<div id="a5">
+					性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：<input type="text" value="${param.xb}" name="xb" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;"/>
+				</div><br />
+				<div id="a6">
+					联系方式：<input type="text" value="${param.lxfs}" name="lxfs" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;">
+				</div><br />
+				<div id="a7">
+					注册时间：<input type="text" value="${param.zcsj}" readonly="readonly" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;">
+				</div><br />
+				<div style="float:left;margin-left:135px">
+					&nbsp;&nbsp;&nbsp;&nbsp;验证码：<input type="text" value="" id="yz" name="yz" style="border-radius:5px ;width: 300px;height: 30px;border: solid 1px #DDD;">
+				</div>
+				<div style="padding:5px"><input type="button" id="yzm" value="发送验证码"></div>
+				<br />
+				<div id="a0">
+					<input type="submit" name="yes" id="yes" value="确定" style="background-color: whitesmoke;width: 60px;height: 35px;border: solid 1px #DDD;border-radius:5px ;" />
+				</div>
+				</div>
+			</form>
+			</div>
+		</div>
+	</body>
+	
+	<!--邮箱验证  -->
+	<form style="display:none" action="${pageContext.request.contextPath}/EmailServlet?m=updateAdminEmail" method="post" id="form1">
+		<input type="text" value="${param.zh}" name="zhxx" />
+		<input type="text" value="${param.yhm}" name="yhmxx" />
+		<input type="text" value="${param.xb}" name="xbxx" />
+		<input type="text" value="${param.lxfs}" name="lxfsxx" />
+		<input type="text" value="${param.zcsj}" name="zcsjxx" />
+		<input type="button" name="adyzm" id="ayzm" />
+	</form>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#yzm").click(function(){
+				$("#form1").submit();
+			});
+		});
+	</script>
+</html>

@@ -1,0 +1,111 @@
+package com.Nine.Sky_lnn.service;
+
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.Nine.Sky_lnn.bean.Dlxxb;
+import com.Nine.Sky_lnn.dao.DlxxbDao;
+import com.Nine.Sky_lnn.service.base.BaseServiceAdapter;
+import com.Nine.Sky_lnn.service.base.IBaseService;
+
+
+public class DlxxbService extends BaseServiceAdapter<Dlxxb> implements IBaseService<Dlxxb> {
+	private DlxxbDao dlxxbDao=new DlxxbDao();
+
+	@Override
+	public boolean add(Dlxxb obj) {
+		String sfbz="1";
+		String tx="cd3959a66c004a6abea607caae68b09dlala.jpg";
+		obj.setSfbz(sfbz);
+		obj.setTx(tx);
+		return dlxxbDao.add(obj);
+	}
+
+	public boolean addByadmin(Dlxxb obj) {
+//		String sfbz="1";
+//		String tx="cd3959a66c004a6abea607caae68b09dlala.jpg";
+//		obj.setSfbz(sfbz);
+//		obj.setTx(tx);
+		return dlxxbDao.add(obj);
+	}
+	
+	@Override
+	public boolean deleteById(String id) {
+		return dlxxbDao.deleteById(id);
+	}
+
+	@Override
+	public boolean delete(Dlxxb obj) {
+		return dlxxbDao.delete(obj);
+	}
+
+	@Override
+	public boolean update(Dlxxb obj) {
+		return dlxxbDao.update(obj);
+	}
+	
+	public boolean updateMm(Dlxxb obj) {
+		return dlxxbDao.updateMm(obj);
+	}
+
+	@Override
+	public Dlxxb selectById(String id) {
+		return dlxxbDao.selectById(id);
+	}
+	
+	
+	public Dlxxb selectByZh(String id) {
+		return dlxxbDao.selectByZh(id);
+	}
+
+	@Override
+	public Dlxxb select(Dlxxb obj) {
+		return dlxxbDao.select(obj);
+	}
+
+	public Dlxxb selectbyobj(Dlxxb obj) {
+		return dlxxbDao.selectbyobj(obj);
+	}
+	
+	@Override
+	public ArrayList<Dlxxb> listAll() {
+		ArrayList<Dlxxb> list = dlxxbDao.listAll();
+		return list;
+	}
+
+	@Override
+	public ArrayList<Dlxxb> listByObj(Dlxxb obj) {
+		ArrayList<Dlxxb> list = dlxxbDao.listByObj(obj);
+		return list;
+	}
+
+	@Override
+	public ArrayList<Dlxxb> listByMap(Map<String, Object> map) {
+		Dlxxb obj = (Dlxxb)map.get("user");
+		ArrayList<Dlxxb> list =  dlxxbDao.listByMap(map);
+		return list;
+	}
+
+	@Override
+	public boolean isExist(String id) {
+		return dlxxbDao.isExist(id);
+	}
+
+	@Override
+	public boolean isExist(Dlxxb obj) {
+		return dlxxbDao.isExist(obj);
+	}
+	
+	public boolean isExistlogin(Dlxxb obj) {
+		return dlxxbDao.isExistlogin(obj);
+	}
+
+	/**
+	 * 更新用户头像
+	 */
+	public boolean updateYhtx(Dlxxb obj) {
+		return dlxxbDao.updateYhtx(obj);
+	}
+
+}

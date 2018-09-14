@@ -1,0 +1,163 @@
+package com.Nine.Sky_lnn.control;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.Nine.Sky_lnn.bean.Dlxxb;
+import com.Nine.Sky_lnn.bean.Yhxxb;
+import com.Nine.Sky_lnn.common.Pager;
+import com.Nine.Sky_lnn.service.DlxxbService;
+import com.Nine.Sky_lnn.service.YhxxbService;
+import com.Nine.Sky_lnn.util.DateUtil;
+import com.Nine.Sky_lnn.util.EncryptTool;
+import com.Nine.Sky_lnn.util.UUIDUtil;
+
+/**
+ * Servlet implementation class YhxxbServlet
+ */
+@WebServlet("/YhxxbServlet")
+public class YhxxbServlet extends HttpServlet {
+	private YhxxbService yhxxbService = new YhxxbService();
+	private DlxxbService dlxxService=new DlxxbService();
+	
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
+		String m = request.getParameter("m");
+		if("add".equals(m)) {			//新增用户
+			add(request,response);
+		}
+		else if("delete".equals(m)) {	//删除用户
+			delete(request,response);
+		}
+		else if("update".equals(m)) {	//更新用户
+			update(request,response);
+		}
+		else if("listAll".equals(m)) {	//查询所有用户
+			listAll(request,response);
+		}
+		else if("listByMap".equals(m)) {//查询符合条件的所有用户
+			listByMap(request,response);
+		}
+		else if("updatePwd".equals(m)) {//更新用户密码
+			updatePwd(request,response);
+		}
+	}
+
+	/**增加用户*/
+	private void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String zh=request.getParameter("zh");
+		String yhm=request.getParameter("yhm");
+		String grbh=UUIDUtil.getUuid();
+		String xb=request.getParameter("xb");
+		String lxfs=request.getParameter("lxfs");
+		String zcsj=DateUtil.getNow();
+		String pwd=request.getParameter("pwd");
+		
+		Yhxxb user = new Yhxxb(grbh, zh, yhm, xb, lxfs, zcsj);
+		Dlxxb user1 = new Dlxxb(grbh, zh, pwd, "1", null);
+		
+		if(yhxxbService.isExist(user)) {
+			response.sendRedirect(request.getContextPath()+"/pageAdmin/addUser.jsp?hasAccount=true");
+		}else if(dlxxService.isExist(user1)) {
+			response.sendRedirect(request.getContextPath()+"/pageAdmin/addUser.jsp?hasAccount=true");
+		}
+		else {
+			boolean  ret1=dlxxService.add(user1);
+			boolean ret = yhxxbService.add(user);
+			listAll(request, response);
+		}
+	}
+
+	/**删除用户*/
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String grbh = request.getParameter("grbh");
+		boolean ret = yhxxbService.deleteById(grbh);
+		boolean ret1=dlxxService.deleteById(grbh);
+		response.sendRedirect(request.getContextPath()+"/YhxxbServlet?m=listAll&flag=sgyh");
+	}
+
+	/**修改用户信息*/
+	private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String zh=request.getParameter("zh");
+		String yhm=request.getParameter("yhm");
+		String pwd=request.getParameter("pwd");
+		String xb=request.getParameter("xb");
+		String lxfs=request.getParameter("lxfs");
+		
+		Yhxxb user = new Yhxxb();
+		Dlxxb user1 = new Dlxxb();
+		
+		user.setZh(zh);
+		user.setYhm(yhm);
+		
+		user1.setZh(zh);
+		
+		if(dlxxService.isExist(user1)&&yhxxbService.isExist(user)){
+			user=yhxxbService.select(user);
+			user.setXb(xb);
+			user.setLxfs(lxfs);
+			yhxxbService.update(user);
+			
+			user1=dlxxService.selectbyobj(user1);
+			
+			if("".equals(pwd)!=true) {
+				pwd=EncryptTool.getEncStr(pwd);
+				user1.setPwd(pwd);
+			}
+			
+			dlxxService.updateMm(user1);
+			
+			response.sendRedirect(request.getContextPath()+"/YhxxbServlet?m=listAll&flag=sgyh");
+		}
+	}
+
+	/**查询所有用户*/
+	private void listAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String flag=request.getParameter("flag");
+		String pageNo = request.getParameter("pageNo");
+		String zh=request.getParameter("zh");
+		String yhm=request.getParameter("yhm");
+		String zcsj=request.getParameter("zcsj");
+		
+		Yhxxb user = new Yhxxb(null, zh, yhm, null, null, zcsj);
+		Pager pager = new Pager();
+		pager.setPageNo(pageNo == null ? 1 : Integer.parseInt(pageNo));
+		//将用户user对象 和分页pager对象 用Map封装起来
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("pager", pager);
+		map.put("user", user);
+		
+		//查询获取结果集
+		ArrayList<Yhxxb> list = yhxxbService.listByMap(map);
+		
+		request.setAttribute("list", list);
+		request.setAttribute("pager", pager);
+		
+		if("ckyh".equals(flag)) {
+			request.getRequestDispatcher("/pageAdmin/accountList.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/pageAdmin/accountMgr.jsp").forward(request, response);
+		}
+	}
+
+	private void listByMap(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void updatePwd(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,48 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+#top{
+	width: 100%;
+	background-color:#808080;
+}
+#main1{
+	background-color: #DDDDDD;
+	
+}
+table{
+	
+	border-style:none;
+	
+}
+th{
+	border: solid 1px #DDD;
+	text-align: center;
+	font-size: 18px;
+	padding: 10px 15px;
+	color: #303030;
+	background-color:#F5F5F5;
+}
+ td{
+	border: solid 1px #DDD;
+	text-align: center;
+	font-size: 15px;
+	padding: 10px 15px;
+	color: #303030;
+	border-top-style:none ;
+}
+#button{
+	text-align: center;
+}
+#tr_input>td>input{
+	height: 25px;
+	width: 70px;
+	border-radius:5px ;
+	border: solid 1px #808080;
+}
+
+
+
+
+
+

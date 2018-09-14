@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%    String n="1";
+       n = request.getParameter("n");
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>SCT-后台系统</title>
+<link href="css/login_css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/denglu.js">
+
+
+	 
+</script>
+</head>
+<body>
+	<div id="login_center">
+		<div id="login_area">
+			<div id="login_box">
+			<a href="${pageContext.request.contextPath }/XxglServlet?m=listAll&flag=first"><div class="index" style="width: 300px;height: 300px;background-color: rgba(0,0,0,0.0);position: absolute;top: 50px;left: 60px;">
+			</div></a>
+				<div id="login_form">
+					<form id="submitForm" action="${ pageContext.request.contextPath }/dengluServlet?m=login" method="post"name="login_sub">
+						
+						<div id="bt"  class="sty_txt2">
+							<h1 >login</h1>
+						</div>
+						
+						<div id="logints"  class="sty_txt2">
+						      <%if("1".equals(n)){ %>
+							<h1></h1>
+							<% }else if("0".equals(n)){ %>
+							<h1 style="padding-left: 50px;">登陆信息有错</h1>
+							<%} %>
+						</div>
+						
+						<div id="login_tip">
+							<span id="login_err" class="sty_txt2"></span>
+						</div>
+						<div>
+							 账&nbsp;&nbsp;&nbsp;&nbsp;号：<input type="text" name="userEntity.userCode" class="username" id="zh" value="${cookie.zh.value}"/><span id="zhspan"style="font-family: '微软雅黑';font-size: 9px;" ></span>
+						</div>
+						<div>
+							密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="userEntity.password" class="pwd" id="pwd"  value="${cookie.pwd.value }"/><span id="pwdspan"style="font-family: '微软雅黑';font-size: 9px;" ></span>
+						</div>
+						<div>
+							<input type="checkbox" name="remeberme" id="remeberme" value="" style="margin-top: 20px;margin-left: 60px;"/>记住我
+							<a href="register.jsp" style="text-decoration:none;color:#000000;margin-left:110px">注册</a>
+						</div>
+						
+						
+						
+						<div id="btn_area">
+							<input type="button" class="login_btn" id="login_sub"  value="登  录">
+							<input type="reset" class="login_btn" id="login_ret" value="重 置">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

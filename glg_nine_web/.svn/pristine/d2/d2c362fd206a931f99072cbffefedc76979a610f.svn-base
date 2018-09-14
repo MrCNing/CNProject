@@ -1,0 +1,142 @@
+package com.Nine.Sky_lnn.control;
+
+import java.io.IOException;
+
+import javax.mail.Session;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.Nine.Sky_lnn.bean.Dlxxb;
+import com.Nine.Sky_lnn.bean.Glyxxb;
+import com.Nine.Sky_lnn.bean.Yhxxb;
+import com.Nine.Sky_lnn.service.DlxxbService;
+import com.Nine.Sky_lnn.service.GlyxxbService;
+import com.Nine.Sky_lnn.service.YhxxbService;
+import com.Nine.Sky_lnn.util.EncryptTool;
+
+/**
+ * Servlet implementation class dengluServlet
+ */
+@WebServlet("/dengluServlet")
+public class dengluServlet extends HttpServlet {
+	private DlxxbService dlxxbService = new DlxxbService();
+	private YhxxbService yhxxbService = new YhxxbService();
+	private GlyxxbService glyxxbService = new GlyxxbService();
+	private EncryptTool encryptTool=new EncryptTool();
+	private static final long serialVersionUID = 1L;
+
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String m = request.getParameter("m");
+		if ("login".equals(m)) {
+			/*登录*/
+			login(request, response);
+		} else if ("dele".equals(m)) {
+			/*注销*/
+			dele(request, response);
+		}
+	}
+
+	private void dele(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		request.getSession().removeAttribute("yhuser");
+		request.getSession().removeAttribute("yhxx");
+		//response.sendRedirect(request.getContextPath() + "/index.jsp");
+		request.getRequestDispatcher("/XxglServlet?m=listAll&flag=first").forward(request,response);
+	}
+
+	protected void login(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Dlxxb dlxxb = new Dlxxb();
+		Yhxxb yhxxb = new Yhxxb();
+		Glyxxb glyxxb = new Glyxxb();
+		String zh = request.getParameter("userEntity.userCode");
+		String pwd = request.getParameter("userEntity.password");
+		Cook(request, response, zh, pwd);
+		pwd = encryptTool.getEncStr(pwd);
+		System.out.println(zh + pwd);
+		dlxxb.setZh(zh);
+		dlxxb.setPwd(pwd);
+		yhxxb.setZh(zh);
+		glyxxb.setZh(zh);
+		/*判断登陆表是否存在*/
+		boolean a = dlxxbService.isExistlogin(dlxxb);
+		/*判断用户表是否存在*/
+		boolean b = yhxxbService.isExist(yhxxb);
+		/*判断管理员表是否存在*/
+		boolean c = glyxxbService.isExist(glyxxb);
+        /*账号获取登录信息*/
+		dlxxb = dlxxbService.selectByZh(zh);
+		 /*账号获取用户信息*/
+		yhxxb = yhxxbService.selectByZh(zh);
+		 /*账号获取管理员信息*/
+		glyxxb=glyxxbService.select(glyxxb);
+		
+		if (dlxxb != null && yhxxb != null) {
+		    /*用户的session*/
+			request.getSession().setAttribute("yhuser", dlxxb);
+			request.getSession().setAttribute("yhxx", yhxxb);
+		}else if(dlxxb!=null&&glyxxb!=null) {
+			 /*管理员的session*/
+			request.getSession().setAttribute("glyadmin", dlxxb);
+			request.getSession().setAttribute("glyxx", glyxxb);
+		}
+		
+		System.out.println(dlxxb.getSfbz());
+		if (a && b && dlxxb.getSfbz().equals("1")) {
+			/*用户登录*/
+			response.sendRedirect("/glg_nine_web/XxglServlet?m=listAll&flag=first");
+
+		} else if (a && c && dlxxb.getSfbz().equals("0")) {
+			/*管理员登录*/
+			String yhm = glyxxb.getYhm();
+			response.sendRedirect(request.getContextPath() + "/pageAdmin/admin.jsp?yhm=" + yhm);
+		} else {
+			String Zh = dlxxb.getZh();
+			response.sendRedirect(request.getContextPath() + "/login.jsp?n=0&zh=" + zh);
+		}
+
+	}
+
+	private void Cook(HttpServletRequest request, HttpServletResponse response, String zh, String pwd) {
+		// Cookie管理
+		String remeberme = request.getParameter("remeberme");
+		if (remeberme != null) {
+			Cookie[] cks = request.getCookies();
+			if (null != cks) {
+				int i;
+				for (i = 0; i < cks.length; i++) {
+					if ("zh".equals(cks[i].getName())) {
+						break;
+					}
+				}
+				if (i == cks.length) {
+					Cookie uk = new Cookie("zh", zh);
+					Cookie pk = new Cookie("pwd", pwd);
+					uk.setPath(request.getContextPath());
+					pk.setPath(request.getContextPath());
+					uk.setMaxAge(600);
+					pk.setMaxAge(600);
+
+					response.addCookie(uk);
+					response.addCookie(pk);
+				}
+			}
+		} else {
+			Cookie[] cks = request.getCookies();
+			for (int i = 0; i < cks.length; i++) {
+				if ("zh".equals(cks[i].getName()) || "pwd".equals(cks[i].getName())) {
+					System.out.println("注销了");
+					Cookie uk = new Cookie("zh", null);
+					Cookie pk = new Cookie("pwd", null);
+					cks[i].setMaxAge(0);
+
+				}
+
+			}
+		}
+
+	}
+}

@@ -1,0 +1,47 @@
+
+*{
+ padding: 0px;
+ margin: 0px;	
+}
+#main{
+	height: 1000px;
+	width: 100%;
+	background-color: #eeeeee;
+}
+#top{
+	height: 40px;
+	width: 100%;
+	background-color: #808080;
+}
+#main1{
+	width: 704px;
+	height: 320px;
+	margin:  0 auto;
+}
+#main_left{
+	height:300px;
+	float:left;
+	width:340px;
+	color: #303030;
+}
+#main_right{
+	height:300px;
+	float:left;
+	width:360px;
+	color: #303030;
+}
+#main_bottom{
+	text-align: center;
+}
+#main_left>form>input{
+	border-radius:5px;width: 200px;height: 25px;border: solid 1px  #ADADAD;
+}
+#main_right>input{
+	border-radius:5px;width: 200px;height: 25px;border: solid 1px #ADADAD;
+}
+#main_bottom_input input{
+	border-radius:5px;width: 70px;height: 25px;border: solid 1px #ADADAD;
+}
+
+
+

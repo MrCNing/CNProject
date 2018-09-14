@@ -1,0 +1,82 @@
+package com.Nine.Sky_lnn.service;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.Nine.Sky_lnn.bean.Dlxxb;
+import com.Nine.Sky_lnn.bean.Glyxxb;
+import com.Nine.Sky_lnn.dao.GlyxxbDao;
+import com.Nine.Sky_lnn.service.base.BaseServiceAdapter;
+import com.Nine.Sky_lnn.service.base.IBaseService;
+
+public class GlyxxbService extends BaseServiceAdapter<Glyxxb> implements IBaseService<Glyxxb> {
+	private GlyxxbDao glyxxbDao=new GlyxxbDao();
+	
+	@Override
+	public boolean add(Glyxxb obj) {
+		return glyxxbDao.add(obj);
+	}
+
+	@Override
+	public boolean deleteById(String id) {
+		return glyxxbDao.deleteById(id);
+	}
+
+	@Override
+	public boolean delete(Glyxxb obj) {
+		return glyxxbDao.delete(obj);
+	}
+
+	@Override
+	public boolean update(Glyxxb obj) {
+		return glyxxbDao.update(obj);
+	}
+
+	public boolean updatejbxx(Glyxxb obj) {
+		return glyxxbDao.updatejbxx(obj);
+	}
+	
+	@Override
+	public Glyxxb selectById(String id) {
+		return glyxxbDao.selectById(id);
+	}
+
+	@Override
+	public Glyxxb select(Glyxxb obj) {
+		return glyxxbDao.select(obj);
+	}
+
+	@Override
+	public ArrayList<Glyxxb> listAll() {
+		ArrayList<Glyxxb> list = glyxxbDao.listAll();
+		return list;
+	}
+
+	@Override
+	public ArrayList<Glyxxb> listByObj(Glyxxb obj) {
+		ArrayList<Glyxxb> list = glyxxbDao.listByObj(obj);
+		return list;
+	}
+
+	@Override
+	public ArrayList<Glyxxb> listByMap(Map<String, Object> map) {
+		Glyxxb obj = (Glyxxb)map.get("user");
+		ArrayList<Glyxxb> list =  glyxxbDao.listByMap(map);
+		return list;
+	}
+
+	@Override
+	public boolean isExist(String id) {
+		return glyxxbDao.isExist(id);
+	}
+	
+	public boolean isExistZh(String id) {
+		return glyxxbDao.isExistZh(id);
+	}
+
+	@Override
+	public boolean isExist(Glyxxb obj) {
+		return glyxxbDao.isExist(obj);
+	}
+
+}

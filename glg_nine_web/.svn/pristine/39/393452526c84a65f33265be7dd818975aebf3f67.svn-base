@@ -1,0 +1,40 @@
+
+*{
+ padding: 0px;
+ margin: 0px;	
+}
+#main{
+	height: 100%;
+	width: 100%;
+	background-color: #eeeeee;
+}
+#main1{
+	border: solid 1px #DDDDDD;
+	border-radius:2%;
+	background-color:white;
+	width: 70%;
+	height: 1000px;
+	margin: auto;
+}
+#main_left{
+	text-align: center;
+	width: 50%;
+	float: left;
+	height: 1000px;
+	color: #303030;
+	font-size: 20px;
+}
+#main_right{
+	text-align: center;
+	float: right;
+	width: 50%;
+	height: 1000px;
+	color: #303030;
+	font-size: 20px;
+}
+#main_left>input{
+	border-radius:5px;width: 200px;height: 35px;border: solid 1px #ADADAD;
+}
+#main_right>input{
+	border-radius:5px;width: 200px;height: 35px;border: solid 1px #ADADAD;
+}

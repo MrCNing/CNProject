@@ -1,0 +1,88 @@
+package com.Nine.Sky_lnn.control;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.Nine.Sky_lnn.bean.Dlxxb;
+import com.Nine.Sky_lnn.bean.Yhxxb;
+import com.Nine.Sky_lnn.service.DlxxbService;
+import com.Nine.Sky_lnn.service.YhxxbService;
+import com.Nine.Sky_lnn.util.ImgUploadUtil;
+
+
+/**
+ * 文件上传：
+ * 1. 导入jar包：commons-fileupload.jar、commons-io.jar
+ * 2. 写上传逻辑：前台页面、后台servlet
+ * 3. 在server.xml中 配置文件请求映射路径：  
+ * 	  <Context docBase="c:/upload" path="/glg_frAjax/upload" reloadable="false"/>
+ */
+@WebServlet("/ImageUploadServlet")
+public class ImageUploadServlet extends HttpServlet{
+	private DlxxbService dlxxbService = new DlxxbService();
+	
+	@Override
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
+		String m = request.getParameter("m");
+		switch (m) {
+		case "updateUserPic":
+			updateUserPic(request,response);
+			break;
+		case "updateAdminPic":
+			updateAdminPic(request, response);
+			break;
+		}
+	}
+	
+	/**
+	 * 普通用户更新头像
+	 */
+	public void updateUserPic(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pic = updatePic(request);
+		response.sendRedirect(request.getContextPath()+"/pages_user/yhtx.jsp?pic="+pic);
+	}
+	
+	/**
+	 * 管理员更新头像
+	 */
+	public void updateAdminPic(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pic = updatePic(request);
+		response.sendRedirect(request.getContextPath()+"/pageAdmin/admin.jsp?pic="+pic);
+	}
+	
+	public String updatePic(HttpServletRequest request){
+		String pic = ImgUploadUtil.uploadImage(request, "C:/upload"); //上传图片
+		
+		if(pic.length() > 1 ) {//图片上传成功
+			HttpSession session = request.getSession();
+			Dlxxb yh = (Dlxxb)session.getAttribute("glyadmin");
+			//将图片路径保存到数据库
+			Dlxxb user = new Dlxxb();
+//			Yhxxb user1 = new Yhxxb();
+			
+//			user1.setYhm(new YhxxbService().selectByZh(yh.getZh()).getYhm());
+			
+			user.setTx(pic);
+//			user.setZh(yh.getZh());
+			boolean ret = dlxxbService.updateYhtx(user);
+			System.out.println(pic);
+			//保存成功，更新session
+			if(ret) {
+				yh.setTx(pic);
+				session.setAttribute("user", yh);//更新session
+//				session.setAttribute("user1", user1);
+			}
+		}
+		
+		return pic;
+	}
+
+}

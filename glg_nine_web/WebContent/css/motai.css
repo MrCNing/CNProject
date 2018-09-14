@@ -1,0 +1,76 @@
+.modal-body{
+  height:500px;
+  overflow:scroll;
+}
+
+#room_xq img{
+	margin: 0 auto;
+	width: 500px;
+    height: 300px;
+}
+
+#room_xq ul{
+	margin: 0 auto;
+	
+	border-bottom: 1px solid #303030;
+}
+
+#room_xq_bt ul{
+	padding: 0;
+	width: 480px;
+	height: 60px;
+}
+
+#room_xq_bt li{
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-left: 30px;
+}
+#room_xq li{
+	list-style: none;
+	float: left;
+	
+	
+}
+.nr{
+	width: 500px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.nr li:first-child{
+	width: 110px;
+	height: 50px;
+	line-height: 45px;
+	font-size: 20px;
+}
+
+.nr li{
+	margin-top: 10px;
+}
+.nr li:last-child{
+	width: 370px;
+	height: 50px;
+	font-size: 15px;
+}
+.nr li:last-child div{
+	float: left;
+	font-size: 15px;
+	width:185px;
+}
+
+.nr li:last-child span{
+	font-size: 15px;
+	color: #999999;
+}
+
+.nr ul{
+	height: 70px;
+}
+#myModa_grxx input{
+	font-size:15px;
+	padding:5px;
+}

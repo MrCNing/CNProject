@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>心怡短租--注册</title>
+<link href="css/register_css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.8.0.js"></script>
+<script type="text/javascript" src="js/zhuce.js">
+	
+</script>
+</head>
+<body>
+	<div id="login_center">
+		<div id="login_area">
+			<div id="login_box">
+				<div id="login_form">
+					<form id="submitForm" action="${ pageContext.request.contextPath }/zhuceServlet" method="post">
+						<div id="bt"  class="sty_txt2">
+							<h1 >register</h1>
+						</div>
+						<div id="login_tip">
+							<span id="login_err" class="sty_txt2"></span>
+						</div>
+						<div>
+							 邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="text" name="userEntity.userCode" class="username" id="zh"><span id="zhspan"style="font-family: '微软雅黑';font-size: 9px;color: red;" ></span>
+						</div>
+						<div>
+							 用户名：<input type="text" name="userEntity.userCode2" class="username" id="yhm"><span id="yhmspan"style="font-family: '微软雅黑';font-size: 9px;color: red;" ></span>
+						</div>
+						<div>
+							密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="userEntity.password" class="pwd" id="pwd" ><span id="pwdspan"style="font-family: '微软雅黑';font-size: 9px;color: red;" ></span>
+						</div>
+						<div>
+							密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="userEntity.password" class="pwd" id="pwd2"><span id="pwd2span"style="font-family: '微软雅黑';font-size: 9px;color: red;" ></span>
+						</div>
+						<div id="btn_area">
+							<input type="button" class="login_btn" id="login_sub"  value="注  册">
+							<input type="reset" class="login_btn" id="login_ret" value="重 置">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

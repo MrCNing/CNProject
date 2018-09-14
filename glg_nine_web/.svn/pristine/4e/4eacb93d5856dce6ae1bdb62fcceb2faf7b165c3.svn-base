@@ -1,0 +1,117 @@
+package com.Nine.Sky_lnn.service;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.Nine.Sky_lnn.bean.Yhxxb;
+import com.Nine.Sky_lnn.dao.YhxxbDao;
+import com.Nine.Sky_lnn.service.base.BaseServiceAdapter;
+import com.Nine.Sky_lnn.service.base.IBaseService;
+import com.Nine.Sky_lnn.util.DateUtil;
+import com.Nine.Sky_lnn.util.StrUtil;
+
+
+public class YhxxbService extends BaseServiceAdapter<Yhxxb> implements IBaseService<Yhxxb> {
+	private YhxxbDao yhxxbDao=new YhxxbDao();
+	
+	@Override
+	public boolean add(Yhxxb obj) {
+		String lxfs=null;
+		String xb="男";
+		String zcsj = DateUtil.getNow();
+		obj.setLxfs(lxfs);
+		obj.setXb(xb);
+		obj.setZcsj(zcsj);
+		return yhxxbDao.add(obj);
+	}
+
+	@Override
+	public boolean deleteById(String id) {
+		return yhxxbDao.deleteById(id);
+	}
+
+	@Override
+	public boolean delete(Yhxxb obj) {
+		return yhxxbDao.delete(obj);
+	}
+
+	@Override
+	public boolean update(Yhxxb obj) {
+		return yhxxbDao.update(obj);
+	}
+	
+
+
+	@Override
+	public Yhxxb selectById(String id) {
+		return yhxxbDao.selectById(id);
+	}
+
+	public Yhxxb selectByZh(String id) {
+		return yhxxbDao.selectByZh(id);
+	}
+
+	@Override
+	public Yhxxb select(Yhxxb obj) {
+		return yhxxbDao.select(obj);
+	}
+
+	@Override
+	public ArrayList<Yhxxb> listAll() {
+		ArrayList<Yhxxb> list = yhxxbDao.listAll();
+		return list;
+	}
+
+	@Override
+	public ArrayList<Yhxxb> listByObj(Yhxxb obj) {
+		ArrayList<Yhxxb> list = yhxxbDao.listByObj(obj);
+		return list;
+	}
+
+	@Override
+	public ArrayList<Yhxxb> listByMap(Map<String, Object> map) {
+		Yhxxb obj = (Yhxxb)map.get("user");
+		
+		//查询参数加工
+				if(null != obj) {
+					
+					if(StrUtil.isNotEmpty(obj.getZh())) {
+						String zh = obj.getZh();
+						obj.setZh("%"+zh+"%");
+					}
+					
+					if(StrUtil.isNotEmpty(obj.getYhm())) {
+						String yhm = obj.getYhm();
+						obj.setYhm("%"+yhm+"%");
+					}
+					
+					if(StrUtil.isNotEmpty(obj.getZcsj())) {
+						String zcsj = obj.getZcsj();
+						obj.setZcsj("%"+zcsj+"%");
+					}
+				}
+				
+		//查询
+		ArrayList<Yhxxb> list =  yhxxbDao.listByMap(map);
+		
+		//查询结果加工
+		for(Yhxxb user : list) {
+			String sj = user.getZcsj();
+			sj = DateUtil.dateFmt(sj, "yyyyMMddHHmmss", "yyyy-MM-dd HH:mm:ss");
+			user.setZcsj(sj);
+		}
+		return list;
+	}
+
+	@Override
+	public boolean isExist(String id) {
+		return yhxxbDao.isExist(id);
+	}
+	
+	@Override
+	public boolean isExist(Yhxxb obj) {
+		return yhxxbDao.isExist(obj);
+	}
+
+
+}

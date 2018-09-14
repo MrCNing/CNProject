@@ -1,0 +1,52 @@
+
+*{
+	padding: 0px;
+	margin: 0px;
+}
+#top{
+	height: 60px;
+	width: 100%;
+	background-color:#ADADAD;
+	
+}
+#main1{
+	background-color: #DDDDDD;
+}
+table{
+	padding-top: 1%;
+	border-style:none ;
+}
+th{
+	border: solid 1px #DDD;
+	text-align: center;
+	padding: 10px 15px;
+	font-size: 18px;
+	color: #303030;
+	background-color:#EEEEEE;
+}
+ td{
+	border: solid 1px #DDD;
+	text-align: center;
+	padding: 10px 15px;
+	font-size: 15px;
+	color: #303030;
+	border-top-style:none ;
+}
+#button{
+	text-align: center;
+}
+#td_input>input{
+	width: 70px;
+	height: 30px;
+	border-radius:5px ;
+	border: solid 1px #808080;
+	background-color:#DDDDDD;
+}
+#tr_input>td>input{
+	height: 25px;
+	border-radius:5px ;
+	border: solid 1px #808080;
+}
+#tr_input>td{
+	padding: 1px 1px;
+}
