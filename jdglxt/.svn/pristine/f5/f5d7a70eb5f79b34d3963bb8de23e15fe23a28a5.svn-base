@@ -1,0 +1,119 @@
+package org.lanqiao.jdmrg.view;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+
+import org.lanqiao.jdmrg.dao.ClientDao;
+import org.lanqiao.jdmrg.bean.Client;
+import org.lanqiao.jdmrg.service.EmailService;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+
+public class LosePwd extends JFrame{
+	private JTextField tf_accountNum;
+	private JTextField tf_yanzhengma;
+	private JPasswordField pwf_newpwd;
+	private JPasswordField pwf_surepwd;
+	String s3;
+	public LosePwd(String s) {
+		getContentPane().setFont(new Font("宋体", Font.PLAIN, 24));
+		setTitle("欢迎使用");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, 480, 380);
+		this.setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("忘记密码");
+		lblNewLabel.setBounds(169, 28, 107, 27);
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 24));
+		getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("账号");
+		lblNewLabel_1.setBounds(68, 80, 54, 26);
+		getContentPane().add(lblNewLabel_1);
+		
+		JLabel label = new JLabel("新密码");
+		label.setBounds(68, 120, 54, 26);
+		getContentPane().add(label);
+		
+		JLabel label_1 = new JLabel("确认密码");
+		label_1.setBounds(68, 160, 54, 26);
+		getContentPane().add(label_1);
+		
+		JLabel label_2 = new JLabel("验证码");
+		label_2.setBounds(68, 200, 54, 26);
+		getContentPane().add(label_2);
+		
+		tf_accountNum = new JTextField();
+		tf_accountNum.setBounds(151, 83, 150, 26);
+		tf_accountNum.setEnabled(false);
+		tf_accountNum.setText(s);
+		getContentPane().add(tf_accountNum);
+		tf_accountNum.setColumns(10);
+		
+		tf_yanzhengma = new JTextField();
+		tf_yanzhengma.setBounds(151, 203, 150, 26);
+		tf_yanzhengma.setColumns(10);
+		getContentPane().add(tf_yanzhengma);
+		
+		JButton btn_send = new JButton("发送验证码");
+		btn_send.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EmailService email=new EmailService(tf_accountNum.getText());
+				s3=email.sendnum();
+				email.sendMa();
+			}
+		});
+		btn_send.setBounds(328, 83, 114, 26);
+		getContentPane().add(btn_send);
+		
+		JButton btn_confrie = new JButton("确认");
+		btn_confrie.setBounds(82, 267, 93, 26);
+		btn_confrie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String s1=new String(pwf_newpwd.getPassword());
+				String s2=new String(pwf_surepwd.getPassword());
+				if("".equals(tf_accountNum.getText())||"".equals(s1)||"".equals(s2)||"".equals(tf_yanzhengma.getText())) {
+					JOptionPane.showMessageDialog(null,"密码,验证码都不能为空！");
+				}else if(s1.equals(s2)&&tf_yanzhengma.getText().equals(s3)) {
+					Client obj=new Client(tf_accountNum.getText(),s1,null,-1,null,null,null);
+					new ClientDao().updateByacconutNum(obj);
+					new Denglu();
+					dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"两次密码输入不同！");
+				}
+			}
+		});
+		getContentPane().add(btn_confrie);
+		
+		JButton btn_return = new JButton("返回");
+		btn_return.setBounds(257, 267, 93, 26);
+		btn_return.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Denglu();
+				dispose();
+			}
+		});
+		getContentPane().add(btn_return);
+		
+		pwf_newpwd = new JPasswordField();
+		pwf_newpwd.setBounds(151, 123, 150, 26);
+		getContentPane().add(pwf_newpwd);
+		
+		pwf_surepwd = new JPasswordField();
+		pwf_surepwd.setBounds(151, 163, 150, 26);
+		getContentPane().add(pwf_surepwd);
+		setVisible(true);
+		
+	}
+	
+}

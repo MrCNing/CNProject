@@ -1,0 +1,177 @@
+package org.lanqiao.jdmrg.view;
+
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+import javax.swing.AbstractCellEditor;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+
+/**
+ * 房客订单
+ * @author 9组
+ *
+ */
+public class RoomerIndent extends JPanel{
+	/** 读 */
+	private BufferedReader in = null;
+	/** 用户名 */
+	private String nameStr = "guo";
+	/**列表*/
+	private JTable table = null;
+	/***/
+	private DefaultTableModel model = null;
+	/***/
+	private JScrollPane js = null;
+	/**字体*/
+	private Font f = new Font("楷体", Font.PLAIN, 20);
+	
+	public RoomerIndent() {
+		// 设置画布属性
+		this.setLayout(null);
+		this.setSize(840, 640);
+		this.setLocation(0, 0);
+
+		// 调用方法
+		init();
+		
+		// 添加画布到窗口画布
+//		TestFrame.addPanelRight(this);
+//		repaint();
+	}
+	
+	public void init() {
+		String[] columNames = new String[] { "姓名", "联系方式", "房间号", "到店时间", "" };
+		model = new DefaultTableModel(null, columNames);
+		
+		// 读取文件
+		try {
+			in = new BufferedReader(new FileReader("C://AddressMrgData//data//" + nameStr + ".txt"));
+			String s;
+			while ((s = in.readLine()) != null) {
+				model.addRow(new String[] { s, in.readLine() });
+				for (int i = 1; i <= 5; i++) {
+					s = in.readLine();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (in != null) {
+					in.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 设置table属性
+		table = new JTable(model) {
+
+			public boolean isCellEditable(int row, int column) {
+				switch(column) {
+				case 0:
+				case 1:
+				case 2:
+				case 3:return false;
+				}
+				return true;
+			}
+		};
+		table.setFont(f);
+		table.setRowHeight(30);
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		table.getColumnModel().getColumn(4).setCellEditor(new MyRender());// 设置编辑器
+		table.getColumnModel().getColumn(4).setCellRenderer(new MyRender());
+		js = new JScrollPane(table);
+		js.setBounds(0, 0, 840, 650);
+		js.setFont(f);
+		js.setViewportView(table);
+		add(js);
+		// 设置关闭监听
+//		this.addWindowListener(new WindowAdapter() {
+//			public void windowClosing(WindowEvent we) {
+//				jf.setVisible(true);
+//			}
+//		});
+//		this.setVisible(true);
+	}
+	
+	class MyRender extends AbstractCellEditor implements TableCellRenderer, ActionListener, TableCellEditor {
+		private static final long serialVersionUID = 1L;
+		private JButton button = null;
+		/** 读 */
+		private BufferedReader in = null;
+
+		public MyRender() {
+			button = new JButton("详情");
+			button.addActionListener(this);
+		}
+
+		@Override
+		public Object getCellEditorValue() {
+			return null;
+		}
+
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+				int row, int column) {
+			return button;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int row = table.getSelectedRow();
+			String aim = table.getValueAt(row, 0).toString();
+			try {
+				in = new BufferedReader(new FileReader("C://AddressMrgData//data//" + nameStr + ".txt"));
+				String s;
+				while ((s = in.readLine()) != null) {
+					if (aim.equals(s)) {
+						JFrame jf = new JFrame("查询结果");
+						jf.setSize(250, 165);
+						jf.setLocationRelativeTo(null);
+						jf.setAlwaysOnTop(true);
+						JTextArea area = new JTextArea();
+						area.append("姓名：" + s + "\n");
+						area.append("手机：" + in.readLine() + "\n");
+						area.append("电话：" + in.readLine() + "\n");
+						area.append("E-mail：" + in.readLine() + "\n");
+						area.append("QQ：" + in.readLine() + "\n");
+						area.append("工作：" + in.readLine() + "\n");
+						area.append("地址:" + in.readLine() + "\n");
+						area.setEditable(false);
+						area.setBackground(null);
+						jf.add(area);
+						jf.setVisible(true);
+						return;
+					}
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+
+		}
+
+		@Override
+		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
+				int column) {
+			return button;
+		}
+	}
+}
+
+

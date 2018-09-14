@@ -1,0 +1,171 @@
+package org.lanqiao.jdmrg.view;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import org.lanqiao.jdmrg.dao.ClientDao;
+import org.lanqiao.jdmrg.dao.FrontDeskDao;
+import org.lanqiao.jdmrg.bean.Client;
+import org.lanqiao.jdmrg.bean.FrontDesk;
+
+import com.sun.org.apache.bcel.internal.generic.InstructionConstants.Clinit;
+
+public class Denglu extends JFrame{
+	private JTextField tf_accountNum;
+	private JPasswordField Jpwd_pwd;
+	private String s;
+	private JFrame jfff;
+	public Denglu() {
+		jfff = this;
+		setTitle("欢迎使用");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, 480, 380);
+		this.setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(170, 21, 183, 38);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("米其林三星酒店管理系统");
+		lblNewLabel.setBounds(0, 0, 183, 38);
+		panel.add(lblNewLabel);
+		
+		JLabel label_accountNum = new JLabel("账号");
+		label_accountNum.setBounds(92, 88, 41, 28);
+		getContentPane().add(label_accountNum);
+		
+		JLabel label_pwd = new JLabel("密码");
+		label_pwd.setBounds(92, 147, 41, 28);
+		getContentPane().add(label_pwd);
+		
+		tf_accountNum = new JTextField();
+		tf_accountNum.setBounds(170, 89, 145, 28);
+		getContentPane().add(tf_accountNum);
+		tf_accountNum.setColumns(10);
+		
+		JRadioButton rdbtn_clinet = new JRadioButton("客户");
+		rdbtn_clinet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 s=rdbtn_clinet.getText();
+			}
+		});
+		rdbtn_clinet.setBounds(92, 203, 58, 23);
+		getContentPane().add(rdbtn_clinet);
+		
+		JRadioButton rdbtn_empployees = new JRadioButton("员工");
+		rdbtn_empployees.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				s=rdbtn_empployees.getText();
+			}
+		});
+		rdbtn_empployees.setBounds(194, 203, 58, 23);
+		getContentPane().add(rdbtn_empployees);
+		
+		JRadioButton rdbtn_boss = new JRadioButton("老总");
+		rdbtn_boss.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				s=rdbtn_boss.getText();
+			}
+		});
+		rdbtn_boss.setBounds(295, 203, 58, 23);
+		getContentPane().add(rdbtn_boss);
+		
+		  ButtonGroup group = new ButtonGroup();
+		  group.add(rdbtn_clinet);
+		  group.add(rdbtn_empployees);
+		  group.add(rdbtn_boss);
+		
+		JButton btn_login = new JButton("登录");
+		btn_login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String s1=tf_accountNum.getText();
+				String s2=new String(Jpwd_pwd.getPassword());
+				if("客户".equals(s)) {
+					Client client=new ClientDao().findByaccountNum(s1);
+					if(null==client) {
+						JOptionPane.showMessageDialog(null,"该账号不存在！");
+					}else if(client.getPwd().equals(s2)){
+						new CanvasFrame2(s1).addPanelLeft(new ClientPanel());
+						jfff.dispose();
+					}else {
+						JOptionPane.showMessageDialog(null,"账号或密码有误！！");
+					}
+				}else if("员工".equals(s)) {
+					FrontDesk fdesk=new FrontDeskDao().findByaccountNum(s1);
+					if(null==fdesk) {
+						JOptionPane.showMessageDialog(null,"该账号不存在！");
+					}else if(fdesk.getPwd().equals(s2)) {
+					new CanvasFrame2(s1).addPanelLeft(new QTPanel());
+					jfff.dispose();
+					}else {
+						JOptionPane.showMessageDialog(null,"账号或密码有误！！");
+					}
+				}else if("老总".equals(s)) {
+					
+				}else {
+					JOptionPane.showMessageDialog(null,"请选择一个登录身份！");
+				}
+			}
+		});
+		btn_login.setBounds(78, 250, 93, 23);
+		getContentPane().add(btn_login);
+		
+		JButton btn_reg = new JButton("注册");
+		btn_reg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new Zhuce();
+				dispose();
+			}
+		});
+		btn_reg.setBounds(194, 250, 93, 23);
+		getContentPane().add(btn_reg);
+		
+		JButton btn_losepwd= new JButton("忘记密码");
+		btn_losepwd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if("".equals(tf_accountNum.getText())) {
+					JOptionPane.showMessageDialog(null,"账号不能为空！");
+				}else {
+					new LosePwd(tf_accountNum.getText());
+					dispose();
+				}
+			}
+		});
+		btn_losepwd.setBounds(308, 250, 93, 23);
+		getContentPane().add(btn_losepwd);
+		
+		Jpwd_pwd = new JPasswordField();
+		Jpwd_pwd.setBounds(170, 151, 145, 28);
+		getContentPane().add(Jpwd_pwd);
+		
+		setVisible(true);
+	}
+	
+	/**获取账号*/
+	public String getNum() {
+		return tf_accountNum.getText();
+	}
+	
+	/**获取密码*/
+	public String getPwd() {
+		return Jpwd_pwd.getPassword().toString();
+	}
+	
+	
+	
+//	public static void main(String[] args) {
+//		new Denglu();
+//	}
+}

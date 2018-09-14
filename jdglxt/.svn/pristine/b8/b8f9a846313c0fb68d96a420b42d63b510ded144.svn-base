@@ -1,0 +1,300 @@
+package org.lanqiao.jdmrg.view;
+
+import java.awt.Font;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import org.lanqiao.jdmrg.bean.Roomer;
+import org.lanqiao.jdmrg.view.*;
+//import bean.Roomer;
+//import dao.FindClient;
+//import view.CanvasFrame;
+//import view.RoomClientFrame;
+
+public class UpdateClient extends JPanel{
+	Roomer roomerDao=new Roomer();
+	public JButton button1 = new JButton("确定");
+	public JButton button2 = new JButton("返回");
+	
+
+    public  UpdateClient(Roomer roomerDao) {  
+    	JPanel jj=this;
+    	this.setLayout(null);
+    	this.setSize(840, 640);
+    	this.setLocation(0,0);
+    	button1.setSize(100, 50);
+    	button2.setSize(100, 50);
+    	button1.setLocation(330, 550);
+    	button2.setLocation(500, 550);
+    	button1.setFont(new Font("黑体", Font.BOLD, 20));
+    	button2.setFont(new Font("黑体", Font.BOLD, 20));
+      
+
+       //1
+       JLabel label1 = new JLabel("添加房客信息");
+       label1.setBounds(300, 0, 150, 100);
+       label1.setFont(new Font("黑体", Font.BOLD, 20));
+       
+       //2
+       JLabel name = new JLabel("姓名");
+       name.setBounds(50,90, 100, 50);
+       name.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_name=new TextField(roomerDao.getName());
+       Canvas_name.setSize(120, 30);
+       Canvas_name.setLocation(180, 100);
+       
+       //3
+       JLabel contact = new JLabel("联系方式");
+       contact.setBounds(400,85, 100, 50);
+       contact.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_contact=new TextField(roomerDao.getContact());
+       Canvas_contact.setSize(120, 30);
+       Canvas_contact.setLocation(550, 100);
+       
+       //4
+       JLabel roomNo = new JLabel("房间号");
+       roomNo.setBounds(50,170, 100, 50);
+       roomNo.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_roomNo=new TextField(roomerDao.getRoomNo());
+       Canvas_roomNo.setSize(120, 30);
+       Canvas_roomNo.setLocation(180, 180);
+       
+       //5
+       JLabel roomType = new JLabel("类型");
+       roomType.setBounds(400, 170, 100, 50);
+       roomType.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_roomType=new TextField(roomerDao.getRoomType());
+       Canvas_roomType.setSize(120, 30);
+       Canvas_roomType.setLocation(550, 180);
+       
+       //6
+       JLabel roomPrice = new JLabel("价格");
+       roomPrice.setBounds(50, 330, 100, 50);
+       roomPrice.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_roomPrice=new TextField(roomerDao.getRoomPrice());
+       Canvas_roomPrice.setSize(120, 30);
+       Canvas_roomPrice.setLocation(180, 340);
+       
+       //7 400 250 100 50   120 30 550 260 入住
+       JLabel firstTime = new JLabel("入住时间");
+       firstTime.setBounds(50, 250, 100, 50);
+       firstTime.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_firstTime=new TextField(roomerDao.getFirstTime());
+       Canvas_firstTime.setSize(120, 30);
+       Canvas_firstTime.setLocation(180, 260);
+       
+       //8
+       JLabel lastTime = new JLabel("离开时间");
+       lastTime.setBounds(400,250, 100, 50);
+       lastTime.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_lastTime=new TextField(roomerDao.getLastTime());
+       Canvas_lastTime.setSize(120, 30);
+       Canvas_lastTime.setLocation(550, 260);
+       
+       //9
+       JLabel dayNum = new JLabel("入住天数");
+       dayNum.setBounds(400, 330, 100, 50);
+       dayNum.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_dayNum=new TextField(roomerDao.getDayNum());
+       Canvas_dayNum.setSize(120, 30);
+       Canvas_dayNum.setLocation(550, 340);
+       
+       //10
+       JLabel inTime = new JLabel("到店时间");
+       inTime.setBounds(50, 410, 100, 50);
+       inTime.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_inTime=new TextField(roomerDao.getInTime());
+       Canvas_inTime.setSize(120, 30);
+       Canvas_inTime.setLocation(180, 410);
+       
+       //11
+       JLabel id = new JLabel("身份证号");
+       id.setBounds(400, 410, 100, 50);
+       id.setFont(new Font("黑体", Font.BOLD, 20));
+       TextField Canvas_id=new TextField(roomerDao.getId());
+       Canvas_id.setSize(120, 30);
+       Canvas_id.setLocation(550, 410);
+
+       
+
+
+
+      
+
+      
+       
+       
+       
+       
+       this.add(label1);
+       this.add(name);
+       this.add(contact);
+       this.add(roomNo);
+       this.add(roomType);
+       this.add(roomPrice);
+       this.add( firstTime);
+       this.add(lastTime);
+       this.add(dayNum);
+       this.add(inTime);
+       this.add(id);
+      
+       this.add(Canvas_name);
+       this.add(Canvas_contact);
+       this.add(Canvas_roomNo);
+       this.add(Canvas_roomType);
+       this.add( Canvas_roomPrice);
+       this.add( Canvas_firstTime);
+       this.add( Canvas_lastTime);
+       this.add(Canvas_dayNum);
+       this.add(Canvas_inTime);
+       this.add(Canvas_id);
+       
+       this.add(button2);
+       this.add(button1);
+
+   	   
+   	button1.addActionListener(new ActionListener()
+    {
+        public void actionPerformed(final ActionEvent e)
+        {
+        	
+        	String name = Canvas_name.getText();
+        	if (name.length()==0){
+        		JOptionPane.showMessageDialog(null, "名字不能为空", getName(), JOptionPane.INFORMATION_MESSAGE);
+				return ;
+			}
+        	char name1[]=name.toCharArray();
+        	for (int i = 0; i < name1.length; i++) {
+				if (Character.isDigit(name1[i])) {
+					JOptionPane.showMessageDialog(null, "名字不能包含数字", getName(), JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+			}
+        	
+        	
+        	String contact = Canvas_contact.getText();
+        	if(contact.length()!=11) {
+        		JOptionPane.showMessageDialog(null, "电话号码要为11位", getName(), JOptionPane.INFORMATION_MESSAGE);
+        		return;
+        	}
+        	char contac1[]=contact.toCharArray();
+        	for (int i = 0; i < contac1.length; i++) {
+				if (!Character.isDigit(contac1[i])) {
+					JOptionPane.showMessageDialog(null, "电话号码要为数字", getName(), JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+			}
+
+        	
+        	String roomNo=Canvas_roomNo.getText();
+        	if(roomNo.length()!=3) {
+        		JOptionPane.showMessageDialog(null, "房间号要为3位", getName(), JOptionPane.INFORMATION_MESSAGE);
+        	}
+        	char[] roomNO1=roomNo.toCharArray();
+        	for (int i = 0; i < roomNO1.length; i++) {
+        		if (!Character.isDigit(roomNO1[i])) {
+					JOptionPane.showMessageDialog(null, "房间号要为数字", getName(), JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+			}
+
+        	
+        	String roomType = Canvas_roomType.getText();
+        	
+        	
+        	String roomPrice = Canvas_roomPrice.getText();
+        	char[]roomPrice1=roomPrice.toCharArray();
+        	if (roomPrice1.length==0){
+        		JOptionPane.showMessageDialog(null, "价钱不能为空", getName(), JOptionPane.INFORMATION_MESSAGE);
+				return ;
+			}
+        	for (int i = 0; i < roomPrice1.length; i++) {
+				if (!Character.isDigit(roomPrice1[i])) {
+					JOptionPane.showMessageDialog(null, "价钱要为数字", getName(), JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+			}
+        	
+        	String firstTime =Canvas_firstTime.getText();
+        	char[] firstTime1=firstTime.toCharArray();
+        	if (firstTime1.length==0){
+        		JOptionPane.showMessageDialog(null, "入住时间不能为空", getName(), JOptionPane.INFORMATION_MESSAGE);
+				return ;
+			}
+        	
+			
+        	
+        	String lastTime = Canvas_lastTime.getText();
+        	char[] lastTime1=lastTime.toCharArray();
+        	if (lastTime1.length==0){
+        		JOptionPane.showMessageDialog(null, "离店时间不能为空", getName(), JOptionPane.INFORMATION_MESSAGE);
+				return;
+        	}
+        	String dayNum1 = Canvas_dayNum.getText();
+        	char dayNum2[]=contact.toCharArray();
+        	if(dayNum2.length==0) {
+        		JOptionPane.showMessageDialog(null, "天数不能为空", getName(), JOptionPane.INFORMATION_MESSAGE);
+        		return;
+        	}
+        	for (int i = 0; i < dayNum2.length; i++) {
+				if (!Character.isDigit(dayNum2[i])) {
+					JOptionPane.showMessageDialog(null, "天数要为数字", getName(), JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+			}
+            Integer dayNum= Integer.parseInt(dayNum1);
+            
+        	String inTime = Canvas_inTime.getText();
+        	char[] intime1=inTime.toCharArray();
+        	if (intime1.length==0){
+        		JOptionPane.showMessageDialog(null, "到店时间不能为空", getName(), JOptionPane.INFORMATION_MESSAGE);
+				return;
+        	}
+        	
+        	String id =Canvas_id.getText();
+        	if(id.length()!=18) {
+        		JOptionPane.showMessageDialog(null, "身份证要为18位", getName(), JOptionPane.INFORMATION_MESSAGE);
+        		return;
+        	}
+        	char id1[]=id.toCharArray();
+        	for (int i = 0; i < id1.length; i++) {
+				if (!Character.isDigit(id1[i])) {
+					JOptionPane.showMessageDialog(null, "身份证要为数字", getName(), JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+			}
+        	
+        	
+        	JOptionPane.showMessageDialog(null, "添加成功成功", getName(), JOptionPane.INFORMATION_MESSAGE);
+        	
+        	new Roomer("",name, contact, roomNo, roomType, roomPrice, firstTime, lastTime, dayNum, inTime, id);
+        	
+        }
+    });
+   	
+   	button2.addActionListener(new ActionListener() {
+		public void actionPerformed(final ActionEvent e) {
+			FindClient findClient=new FindClient(roomerDao);
+            CanvasFrame.delePanel(jj, findClient );
+			return;
+		}
+	});
+
+   CanvasFrame.addPanelRight(this);
+    	 repaint();
+    	 
+    }
+
+
+		
+	}
+
+	
+
+
